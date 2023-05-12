@@ -1,0 +1,48 @@
+.logo {
+  width: 3rem;
+  height: 2rem;
+}
+
+.navbar-brand {
+  color: #fff4e0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul a {
+  list-style-type: none;
+  color: #404040;
+  text-decoration: none;
+}
+
+ul a:hover {
+  color: #8b8b8b;
+}
+
+header {
+  background-color: #146c94;
+}
+
+.logo-box {
+  height: 10rem;
+  cursor: move;
+}
+
+body,
+html {
+  background-color: #fff4e0;
+}
+
+.app {
+  background-color: #fff4e0;
+}
+
+nav {
+  background-color: #146c94;
+}
+
+.nav-link {
+  color: #404040;
+}/*# sourceMappingURL=header.component.css.map */

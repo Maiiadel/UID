@@ -1,0 +1,86 @@
+<app-header></app-header>
+<<<<<<< HEAD
+<div class="displayTable center">
+  <div class="displayTableCell card w-50 m-5">
+=======
+<div class="displayTable center ">
+  <div class="displayTableCell card  w-50 m-5">
+>>>>>>> parent of 8fa2cdf (;)
+    <div class="authBlock">
+      <h3 class="center m-3">Sign In</h3>
+      <form
+        [formGroup]="SignInForm"
+        (ngSubmit)="onSubmit(SignInForm, userName.value, userPassword.value)"
+        #userForm
+      >
+        <div class="formGroup m-3">
+          <label>E-Mail: </label>
+          <input
+            type="text"
+            formControlName="email"
+            ngModel
+            class="form-control"
+            placeholder="Enter your Email"
+            #userName
+          />
+          <div
+            *ngIf="
+              SignInForm.get('email')?.invalid &&
+              (SignInForm.get('email')?.dirty ||
+                SignInForm.get('email')?.touched)
+            "
+          >
+            <span style="color: red"> Please, provide a Valid Email.</span>
+          </div>
+        </div>
+        <div class="formGroup m-3">
+          <label>Password: </label>
+          <input
+            type="password"
+            formControlName="password"
+            ngModel
+            class="form-control"
+            placeholder="Enter your Password"
+            #userPassword
+          />
+          <div
+            *ngIf="
+              SignInForm.get('password')?.invalid &&
+              (SignInForm.get('password')?.dirty ||
+                SignInForm.get('password')?.touched)
+            "
+          >
+            <span style="color: red"> Please, provide a Password.</span>
+          </div>
+        </div>
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="formGroup d-grid center m-3">
+          <button
+            type="submit"
+            [disabled]="!SignInForm.valid"
+            class="btn btn-success"
+            (click)="onSubmit(SignInForm, userName.value, userPassword.value)"
+          >
+            Login
+          </button>
+        </div>
+
+        <div class="forgotPassword center m-3">
+          <a routerLink="/forgot-password">Forgot Password?</a>
+        </div>
+
+        <div class="redirectToLogin center m-3">
+          <span
+            >Don't have an account?<a
+              class="redirect"
+              routerLink="/register-user"
+            >
+              Sign Up</a
+            ></span
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

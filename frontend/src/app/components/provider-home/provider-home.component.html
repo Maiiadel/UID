@@ -1,0 +1,61 @@
+<app-header></app-header>
+<h2 class="text-center text-secondary">Welcome {{ user["first_name"] }}</h2>
+<div class="card-group">
+  <div
+    class="card rounded m-5 text-center ext-white bg-primary mb-3"
+    style="width: 10rem; height: 20rem"
+  >
+    <img
+      class="card-img-top h-50 w-75 mx-auto align-center"
+      src="/assets/subs-removebg-preview.png"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h3 class="card-title">{{ user["Total_subs"] }}</h3>
+      <h5 class="card-text">Total Subscribers</h5>
+      <a
+        routerLink="/ProviderAddBundle/:{{ user['user_id'] }}"
+        class="btn btn-secondary"
+        >Show more..</a
+      >
+    </div>
+  </div>
+  <div
+    class="card rounded m-5 text-center ext-white bg-success mb-3"
+    style="width: 10rem; height: 20rem"
+  >
+    <img
+      class="ccard-img-top h-50 w-50 mx-auto align-center"
+      src="/assets/bu-removebg-preview.png"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h3 class="card-title">{{ user["Total_elec_bills"] }}</h3>
+      <h5 class="card-text">Total Bundles</h5>
+      <a
+        routerLink="/ProviderAddBundle/:{{ user['user_id'] }}"
+        class="btn btn-secondary"
+        >Show more..</a
+      >
+    </div>
+  </div>
+  <div
+    class="card rounded m-5 text-center ext-white bg-warning mb-3"
+    style="width: 10rem; height: 20rem"
+  >
+    <img
+      class="card-img-top h-50 w-50 mx-auto mt-3 align-center"
+      src="/assets/active-removebg-preview.png"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h3 class="card-title">{{ user["Total_water_bills"] }}</h3>
+      <h5 class="card-text">Active Bundles</h5>
+      <a
+        routerLink="/ProviderAddBundle/:{{ user['user_id'] }}"
+        class="btn btn-secondary"
+        >Show more..</a
+      >
+    </div>
+  </div>
+<app-footer></app-footer>

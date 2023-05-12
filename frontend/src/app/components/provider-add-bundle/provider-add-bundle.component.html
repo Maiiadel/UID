@@ -1,0 +1,82 @@
+<app-menu-provider></app-menu-provider>
+
+<!-- <p>table of bills displayed here m3 filtration w search w  t2riban m3 button add monthly bill </p> -->
+<h1 class="text-center m-5">Your Bundles:</h1>
+<div class="container ">
+<button
+                class="btn btn-primary align-center h-50 w-25  "
+                value={}
+                href=""
+                (click)="showForm()">
+                Add Bundle
+</button>
+</div>
+<br>
+<div class="center ">
+<form  *ngIf="show" class="card w-50 h-50 form-group">
+  <label class="mx-3" >Bundle Name :</label>
+  <input type="text" class="form-control mx-3" id="bundlename" >
+  <br> 
+  <label class="mx-3">Description :</label>
+  <input type="text" class="form-control mx-3" id="Description" >
+  <label class="mx-3">Price of Bundle :</label>
+  <input type="text" class="form-control mx-3" id="billAmount" >
+  <label class="mx-3">Activation Date of Bundle:</label>
+  <input type="date" class="form-control mx-3" id="billAmount" [(ngModel)]="Bundlename">
+  <button (click)="addBundle()" class="btn btn-success w-50 align-center m-auto mt-3 mb-3">Add Bundle </button>
+</form>
+</div>
+<div class="container">
+  <table
+    id="example"
+    class="table table-light table-striped"
+    style="width: 100%" >
+    <thead>
+      <tr>
+        <th>Bundle ID</th>
+        <th>Bundle Name</th>
+        <th>Description</th>
+      
+        <th>Price</th>
+        <th>subscribers  No.</th>
+        
+        <th>Status</th>
+        <th>Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              1
+            </td>
+            <td>
+             flex-8
+            </td>
+            <td>8000 gb and 100 local minutes</td>
+            <td>
+             100 EG
+            </td>
+            <td>
+               20
+               </td>
+            <td>
+              Active
+            </td>
+             <td>
+              <button
+                class="btn btn-success align-center"
+                target="_blank"
+                value={}
+                href="">
+                 Edit 
+              </button>
+            </td>
+          </tr>
+    </tbody>
+    
+  </table>
+</div>
+<br />
+
+
+<app-footer></app-footer>

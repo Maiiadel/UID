@@ -1,0 +1,158 @@
+<app-header></app-header>
+<div class="center">
+  <form
+    [formGroup]="SignUpForm"
+    class="card w-50 m-5"
+    (ngSubmit)="onSubmit(SignUpForm)"
+  >
+    <h3 class="center m-3">Sign Up</h3>
+
+    <div class="mx-3">
+      <h6>First name: <span style="color: red">*</span>:</h6>
+      <input
+        type="text"
+        formControlName="Fname"
+        #userFirstName
+        ngModel
+        class="form-control"
+        placeholder="First name"
+      />
+      <div
+        *ngIf="
+          SignUpForm.get('Fname')?.invalid &&
+          (SignUpForm.get('Fname')?.dirty || SignUpForm.get('Fname')?.touched)
+        "
+      >
+        <span style="color: red"> Please, provide a First Name.</span>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <h6>Last name: <span style="color: red">*</span>:</h6>
+      <input
+        type="text"
+        formControlName="Lname"
+        #userLastName
+        ngModel
+        class="form-control"
+        placeholder="Last name"
+      />
+      <div
+        *ngIf="
+          SignUpForm.get('Lname')?.invalid &&
+          (SignUpForm.get('Lname')?.dirty || SignUpForm.get('Lname')?.touched)
+        "
+      >
+        <span style="color: red"> Please, provide a Last Name.</span>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <h6>Address:</h6>
+      <input
+        type="text"
+        formControlName="address"
+        #userAddress
+        ngModel
+        class="form-control"
+        placeholder="Address"
+      />
+    </div>
+    <div class="m-3">
+      <h6>Contact No: <span style="color: red">*</span>:</h6>
+      <input
+        type="text"
+        formControlName="contact_number"
+        #userContact
+        ngModel
+        class="form-control"
+        placeholder="Contact no."
+      />
+    </div>
+    <div class="m-3">
+      <h6>E-Mail: <span style="color: red">*</span>:</h6>
+      <input
+        type="email"
+        formControlName="email"
+        #userEmail
+        ngModel
+        class="form-control"
+        placeholder="Enter email"
+      />
+      <div
+        *ngIf="
+          SignUpForm.get('email')?.invalid &&
+          (SignUpForm.get('email')?.dirty || SignUpForm.get('email')?.touched)
+        "
+      >
+        <span style="color: red"> Please, provide a valid Email.</span>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <h6>Password: <span style="color: red">*</span>:</h6>
+      <input
+        type="password"
+        formControlName="password"
+        #userPwd
+        ngModel
+        class="form-control"
+        placeholder="Enter password"
+      />
+      <div
+        *ngIf="
+          SignUpForm.get('password')?.invalid &&
+          (SignUpForm.get('password')?.dirty ||
+            SignUpForm.get('password')?.touched)
+        "
+      >
+        <span style="color: red"> Please, provide a Valid Password.</span>
+      </div>
+    </div>
+    <div class="m-3">
+      <h6>Type: <span style="color: red">*</span>:</h6>
+      <br />
+      <select
+        formControlName="type"
+        #userType
+        ngModel
+        class="form-control"
+        name="Type"
+        id="type"
+        placeholder="choose type"
+      >
+        <option value="none">..</option>
+        <option value="client">Client</option>
+        <option value="provider">Provider</option>
+      </select>
+    </div>
+
+    <div class="d-grid m-3 center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!SignUpForm.valid"
+        (click)="
+          authService.SignUp(
+            userFirstName.value,
+            userLastName.value,
+            userEmail.value,
+            userPwd.value,
+            userType.value,
+            userAddress.value,
+            userContact.value
+          )
+        "
+      >
+        Sign Up
+      </button>
+    </div>
+    <div class="redirectToLogin center m-3">
+      <span
+        >Already have an account?
+        <a class="redirect" routerLink="/sign-in">Log In</a></span
+      >
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

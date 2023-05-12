@@ -1,0 +1,114 @@
+<app-header></app-header>
+<!-- <p>table of bills displayed here m3 filtration w search w  t2riban m3 button add monthly bill </p> -->
+<h1 class="text-center m-5">Your Bills:</h1>
+
+<div class="container ">
+<button
+                class="btn btn-primary align-center h-50 w-25  "
+                value={}
+                href=""
+                (click)="showForm()">
+                Add Monthly Bill
+</button>
+</div>
+<br>
+<div class="center ">
+<form  *ngIf="show" class="  card w-50 h-50 form-group">
+  <label class="mx-3" >Bill Type :</label>
+  <br> 
+  <select #userType formControlName="type"  ngModel class="form-control mx-3" name="TypeOfBill" id="type" placeholder="choose Bill type">
+    <option value="Water">Water</option>
+    <option value="Electricity">Electricity</option>
+  </select>
+  <label class="mx-3">Month :</label>
+  <select #userType formControlName="type"  ngModel class="form-control mx-3" name="MonthOfBill" id="month" placeholder="choose Month">
+    <option value="Jan">Jan</option>
+    <option value="Feb">Feb</option>
+    <option value="March">March</option>
+    <option value="April">April</option>
+    <option value="May">May</option>
+    <option value="June">June</option>
+    <option value="July">July</option>
+    <option value="Aug">August</option>
+    <option value="Sep">September</option>
+    <option value="Oct">October</option>
+    <option value="Nov">November</option>
+    <option value="Dec">December</option>
+  </select>
+  <label class="mx-3"for="billAmount">Enter Unit cost :</label>
+  <input type="text" class="form-control mx-3" id="billUnitCost" [(ngModel)]="billAmount">
+  <button (click)="calculateBill()" class="btn btn-success w-50 align-center m-auto mt-3 mb-3">Calculate Bill</button>
+</form>
+</div>
+<div class="container">
+  <table
+    id="example"
+    class="table table-light table-striped"
+    style="width: 100%" >
+    <thead>
+      <tr>
+        <th>Bill ID</th>
+        <th>Type</th>
+        <th>Month</th>
+        <th>Total amount</th>
+        <th>Payment method</th>
+        <th>usage</th>
+        <th>Due date </th>
+        <th>Status</th>
+        <th>Due</th>
+        <th>Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              col 0
+            </td>
+            <td>
+             col 1
+            </td>
+            <td>col 2</td>
+            <td>
+             col 3
+            </td>
+            <td disabled="disabled">
+<<<<<<< HEAD
+              h
+=======
+              <a
+                class="btn btn-danger"
+                target="_blank"
+                value={}
+                href="">
+                col 4
+               </a>
+>>>>>>> parent of 8fa2cdf (;)
+            </td> 
+            <td>
+             col 5
+            </td>
+            <td>
+              col 6
+            </td>
+            <td>
+              col 7
+             </td>
+             <td>
+               col 8
+             </td>
+             <td>
+              <a
+                class="btn btn-success align-center"
+                target="_blank"
+                value={}
+                href="">
+                 Pay
+               </a>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+</div>
+<br />
+
+<app-footer></app-footer>

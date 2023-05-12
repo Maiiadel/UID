@@ -1,0 +1,200 @@
+<<<<<<< HEAD
+<header class="header">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <!-- refers to Client Home if client user -->
+      <span
+        *ngIf="user_is_client"
+        className="logo-box"
+        routerLink="/ClientHome"
+      >
+        <img
+          class="img-thumbnail logo"
+          src="{{ logo_src }}"
+          alt="Logo"
+          style="width: 6rem; height: 4rem"
+          class="mx-5 d-inline-block align-text-top"
+        />
+        <a class="navbar-brand"><h2>Billing System</h2></a>
+      </span>
+      <!-- refers to Provider Home if provider user -->
+      <span
+        *ngIf="user_is_provider"
+        className="logo-box"
+        routerLink="/ProviderHome"
+      >
+        <img
+          class="img-thumbnail logo"
+          src="{{ logo_src }}"
+          alt="Logo"
+          style="width: 6rem; height: 4rem"
+          class="mx-5 d-inline-block align-text-top"
+        />
+        <a class="navbar-brand"><h2>Billing System</h2></a>
+      </span>
+      <!-- refers to sign in if not provider or client user -->
+      <span
+        *ngIf="!user_is_provider && !user_is_client"
+        className="logo-box"
+        routerLink="/sign-in"
+      >
+        <img
+          class="img-thumbnail logo"
+          src="{{ logo_src }}"
+          alt="Logo"
+          style="width: 6rem; height: 4rem"
+          class="mx-5 d-inline-block align-text-top"
+        />
+        <a class="navbar-brand"><h2>Billing System</h2></a>
+      </span>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- refers to Provider Home if provider user -->
+          <li *ngIf="user_is_provider" className="nav-item active">
+            <a
+              routerLink="/ProviderHome"
+              className="nav-link active text-dark"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+          <!-- refers to Client Home if client user -->
+          <li *ngIf="user_is_client" className="nav-item active">
+            <a
+              routerLink="/ClientHome"
+              className="nav-link active text-dark"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+
+          <!-- refers to sign in if not provider or client user -->
+          <li
+            *ngIf="!user_is_client && !user_is_provider"
+            className="nav-item "
+          >
+            <a
+              routerLink="/sign-in"
+              className="nav-link  text-dark"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+
+          <!-- Put Add Bundle if provider user -->
+          <li *ngIf="user_is_provider" className="nav-item">
+            <a routerLink="/ProviderAddBundle" className="text-dark"
+              >Add Bundle</a
+            >
+          </li>
+          <!-- Put Bills if client user -->
+          <li *ngIf="user_is_client" className="nav-item">
+            <a routerLink="/ClientBills" className="text-dark">Bills</a>
+          </li>
+
+          <!-- refers to Provider Profile if provider user -->
+          <li *ngIf="user_is_provider" className="nav-item">
+            <a routerLink="/ProviderProfile" className="text-dark"
+              ><span className="glyphicon glyphicon-user"></span> My Profile</a
+            >
+          </li>
+
+          <!-- refers to Client Profile if client user -->
+          <li *ngIf="user_is_client" className="nav-item">
+            <a routerLink="/ClientProfile" className="text-dark"
+              ><span className="glyphicon glyphicon-user"></span> My Profile</a
+            >
+          </li>
+
+          <!-- Put Log out if any of both users ( client or provider ) has signed in -->
+          <li
+            *ngIf="user_is_client || user_is_provider"
+            className="nav-item"
+            (click)="logout()"
+          >
+            <a routerLink="/sign-in" className="text-dark" (click)="logout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br />
+=======
+
+>>>>>>> parent of 8fa2cdf (;)
+<!-- <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+      <img
+        class="brand-logo"
+        src="assets/logo-positronx-white.svg"
+        alt="positronX.io Logo"
+      />
+    </a>
+  </nav> -->
+  <!-- Sidebar navigation -->
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li> -->
+            <!-- Calling SignOut() Api from AuthService -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav> -->
+<!-- Navbar-->
+<<<<<<< HEAD
+<header class="header shadow">
+  <nav class="navbar bg-white ">
+      <div class="container-fluid">
+                      <img class=" img-thumbnail logo shadow" src="/assets/IS logo.png" alt="Logo" style="width: 6rem; height: 4rem;" class=" mx-5 d-inline-block align-text-top">
+        <a class="navbar-brand " routerLink="/ProviderHome"><h2 c>Billing System</h2></a>
+        <!-- hn3ml hena conditiobal rendering 3ala 7asa el user type  -->
+        
+        <app-menu-client *ngIf="loggedin"></app-menu-client>
+        <!-- <app-menu-provider></app-menu-provider> -->
+      </div> 
+    </nav>
+<br>
+</header>
+=======
+<header class="header">
+  
+        <nav class="navbar bg-white ">
+            <div class="container-fluid">
+                            <img class=" img-thumbnail logo" src="/assets/IS logo.png" alt="Logo" style="width: 6rem; height: 4rem;" class=" mx-5 d-inline-block align-text-top">
+              <a class="navbar-brand" routerLink="/ClientHome"><h2>Billing System</h2></a>
+              
+              <!-- hn3ml hena conditiobal rendering 3ala 7asa el user type  -->
+              <app-menu-client></app-menu-client>
+              <!-- <app-menu-provider></app-menu-provider> -->
+            </div> 
+          </nav>
+    <br>
+</header>
+
+
+>>>>>>> parent of 8fa2cdf (;)

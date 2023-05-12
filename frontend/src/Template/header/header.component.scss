@@ -1,0 +1,48 @@
+$headerColor: #146c94;
+$backColor: #fff4e0;
+
+.logo {
+  width: 3rem;
+  height: 2rem;
+}
+.navbar-brand {
+  color: $backColor;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul a {
+  list-style-type: none;
+  color: #404040;
+  text-decoration: none;
+}
+
+ul a:hover {
+  color: #8b8b8b;
+}
+
+header {
+  background-color: $headerColor;
+}
+
+.logo-box {
+  height: 10rem;
+  cursor: move;
+}
+body,
+html {
+  background-color: $backColor;
+}
+
+.app {
+  background-color: $backColor;
+}
+nav {
+  background-color: $headerColor;
+}
+
+.nav-link {
+  color: #404040;
+}
