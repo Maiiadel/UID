@@ -68,11 +68,7 @@ import { FirebaseService } from './shared/services/firebase.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-<<<<<<< HEAD
     AngularFirestoreModule.enablePersistence(),
-=======
-    AngularFireAuth,
->>>>>>> parent of 8fa2cdf (;)
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,

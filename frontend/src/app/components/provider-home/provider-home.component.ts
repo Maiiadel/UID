@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
-=======
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { UsersService } from 'C:/Users/Mai/UI project/src/app/shared/services/users.service';
->>>>>>> parent of 8fa2cdf (;)
 
 @Component({
   selector: 'app-provider-home',

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
-<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-=======
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { UsersService } from 'C:/Users/Mai/UI project/src/app/shared/services/users.service';
->>>>>>> parent of 8fa2cdf (;)
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
@@ -25,7 +20,7 @@ export class SignInComponent implements OnInit {
     public authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private db: FirebaseService,
+    private db: FirebaseService
   ) {}
   ngOnInit() {
     //console.log('Sign in Entered');

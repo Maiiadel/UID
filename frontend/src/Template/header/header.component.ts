@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Component, OnInit, Input } from '@angular/core';
-=======
-import { Component, OnInit } from '@angular/core';
->>>>>>> parent of 8fa2cdf (;)
 import { AuthService } from '../../app/shared/services/auth.service';
 import { FirebaseService } from '../../app/shared/services/firebase.service';
 @Component({
@@ -11,15 +7,13 @@ import { FirebaseService } from '../../app/shared/services/firebase.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-<<<<<<< HEAD
   loggedin: boolean = true;
-
 
   user_is_provider: boolean = false;
   user_is_client: boolean = false;
   logo_src: string = '/assets/finances-money-svgrepo-com.svg';
 
-  constructor(private db: FirebaseService, public authService: AuthService) { }
+  constructor(private db: FirebaseService, public authService: AuthService) {}
   ngOnInit(): void {
     if (this.db.user.user_type === undefined) {
       return;
@@ -39,8 +33,4 @@ export class HeaderComponent {
     let result = this.authService.SignOut();
     console.log(result);
   }
-=======
-  constructor(public authService: AuthService) {}
-  ngOnInit(): void {}
->>>>>>> parent of 8fa2cdf (;)
 }

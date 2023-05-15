@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import { User } from '../models/User';
 
-=======
-import {UsersService} from 'C:/Users/Mai/UI project/src/app/shared/services/users.service';
->>>>>>> parent of 8fa2cdf (;)
 @Component({
   selector: 'app-client-home',
   templateUrl: './client-home.component.html',
