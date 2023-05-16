@@ -1,21 +1,15 @@
 <header class="header shadow">
   <nav class="navbar">
-    <div class="container-fluid">
+    <span class="container-fluid" routerLink="/">
       <img
         class="img-thumbnail logo shadow"
-        src="/assets/finances-money-svgrepo-com.svg"
+        src="{{ logo_src }}"
         alt="Logo"
         style="width: 6rem; height: 4rem"
         class="mx-5 d-inline-block align-text-top"
       />
-      <a class="navbar-brand" routerLink="/ProviderHome"
-        ><h2>Billing System</h2></a
-      >
-      <!-- hn3ml hena conditiobal rendering 3ala 7asa el user type  -->
-
-      <app-menu-client *ngIf="loggedin"></app-menu-client>
-      <!-- <app-menu-provider></app-menu-provider> -->
-    </div>
+      <a class="navbar-brand" routerLink="/"><h2>Billing System</h2></a>
+    </span>
   </nav>
   <br />
 </header>

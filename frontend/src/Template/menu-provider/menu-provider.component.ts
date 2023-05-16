@@ -30,6 +30,7 @@ export class MenuProviderComponent {
     this.user_is_provider = false;
     this.user_is_client = false;
     console.log('Logged out Entered');
+    this.db.user = {};
 
     let result = this.authService.SignOut();
     console.log(result);

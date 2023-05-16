@@ -1,9 +1,12 @@
 /*
 
+npm install --force @ng-bootstrap/ng-bootstrap
+ng update @angular/core
+npm i
+
 cd frontend
 ng serve
 
-ng update @angular/core
 */
 
 import { NgModule } from '@angular/core';
@@ -75,7 +78,6 @@ import { FirebaseService } from './shared/services/firebase.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
   ],
   providers: [AuthService, FirebaseService],
   bootstrap: [AppComponent],

@@ -1,35 +1,38 @@
-<button
-  type="button"
-  data-toggle="collapse"
-  data-bs-target="#navbarContent"
-  aria-controls="menu"
-  aria-expanded="false"
-  aria-label="Toggle navigation"
-  class="navbar-toggler"
->
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div id="navbarContent" class="collapse navbar-collapse">
-  <nav className="navbar navbar-exband">
-    <div className="container">
-      <ul className="navbar nav col-3">
-        <li className="nav-item active">
-          <a routerLink="/ClientHome" className="text-dark">Home</a>
-        </li>
-        <li className="nav-item">
-          <a routerLink="/ClientBills" className="text-dark">Bills</a>
-        </li>
-        <li className="nav-item">
-          <a routerLink="/ClientProfile" className="text-dark"
-            ><span className="glyphicon glyphicon-user"></span> My Profile</a
-          >
-        </li>
-        <li className="nav-item">
-          <a routerLink="/sign-in" className="text-dark"
-            ><span className="glyphicon glyphicon-log-in"></span> Logout</a
-          >
-        </li>
-      </ul>
+<header class="header shadow">
+  <nav class="navbar bg-white">
+    <div class="container-fluid" routerLink="/ClientHome">
+      <img
+        class="img-thumbnail logo shadow"
+        src="{{ logo_src }}"
+        alt="Logo"
+        style="width: 6rem; height: 4rem"
+        class="mx-5 d-inline-block align-text-top"
+      />
+      <a class="navbar-brand" routerLink="/ClientHome"
+        ><h2>Billing System</h2></a
+      >
+      <nav class="navbar navbar-expand-sm bg-light align-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ClientHome">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ClientBills">Bills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ClientProfile">My Profile</a>
+          </li>
+          <li class="nav-item" (click)="logout()">
+            <a class="nav-link" routerLink="/sign-in">Logout </a>
+          </li>
+          <li class="nav-item">
+            <a type="button" routerLink="/sign-in"
+              ><img src="/assets/logout.jpg" alt="Button Image"
+            /></a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </nav>
-</div>
+  <br />
+</header>

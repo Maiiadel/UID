@@ -33,7 +33,6 @@ const routes: Routes = [
   { path: 'ProviderAddBundle/:id', component: ProviderAddBundleComponent },
   { path: 'ProviderHome/:id', component: ProviderHomeComponent },
 
-  // for testing only
   { path: 'ClientHome', component: ClientHomeComponent },
   { path: 'ProviderHome', component: ProviderHomeComponent },
   // fel client bills 3ayzeen n3ml 7esab eno ypreview el water bs w el electricity bs
