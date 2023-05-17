@@ -1,19 +1,17 @@
 <app-menu-client></app-menu-client>
-<!-- <p>table of bills displayed here m3 filtration w search w  t2riban m3 button add monthly bill </p> -->
+
 <h1 class="text-center m-5">Your Bills:</h1>
 
 <div class="container">
   <button
     class="btn btn-primary align-center h-50 w-25"
-    value="{}"
-    href=""
     (click)="toggleFormShow()"
   >
     Add Monthly Bill
   </button>
 </div>
 <br />
-<div class="center">
+<div id="add-new-bill-box" class="center">
   <form
     [formGroup]="new_bill_group"
     *ngIf="show"
@@ -79,39 +77,34 @@
         <th>Bill ID</th>
         <th>Type</th>
         <th>Month</th>
-        <th>Total amount</th>
         <th>Payment method</th>
+        <th>Cost</th>
         <th>usage</th>
         <th>Due date</th>
         <th>Status</th>
-        <th>Due</th>
+        <th>Due_amount</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>col 0</td>
-        <td>col 1</td>
-        <td>col 2</td>
-        <td>col 3</td>
-        <td disabled="disabled">
-          <a class="btn btn-danger" target="_blank" value="{}" href="">
-            col 4
-          </a>
-        </td>
-        <td>col 5</td>
-        <td>col 6</td>
-        <td>col 7</td>
-        <td>col 8</td>
+      <tr *ngFor="let bill of bills_list">
+        <td>{{ bill.id }}</td>
+        <td>{{ bill.type }}</td>
+        <td>{{ bill.month }}</td>
+        <td>{{ bill.payment_method }}</td>
+        <td>{{ bill.cost }}</td>
+        <td>{{ bill.usage }}</td>
+        <td>{{ bill.due_date }}</td>
+        <td>{{ bill.due_amount }}</td>
+        <td>{{ bill.status }}</td>
+
         <td>
-          <a
+          <button
             class="btn btn-success align-center"
-            target="_blank"
-            value="{}"
-            href=""
+            (click)="pay_bill(bill.id)"
           >
             Pay
-          </a>
+          </button>
         </td>
       </tr>
     </tbody>

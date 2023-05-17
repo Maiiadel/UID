@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmailAuthCredential } from 'firebase/auth';
 import { NgModel } from '@angular/forms';
@@ -61,6 +61,21 @@ export class FirebaseService {
     let costs = this.http.get(url);
     this.unit_cost = { costs };
     return costs;
+  }
+
+  add_client_bill(new_bill: any): any {
+    let url = this.Root + `/add_client_bill`;
+    console.log(`new_bill: ${new_bill}`);
+
+    const params = new HttpParams()
+      .set('uid', this.user.user_id)
+      .set('new_bill', new_bill);
+
+    let uid = this.user.user_id;
+    let data = { uid, new_bill };
+    console.log(url);
+    let response = this.http.post(url, new_bill);
+    return response;
   }
 
   fetchUsers(): Observable<any> {

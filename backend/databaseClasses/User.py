@@ -55,6 +55,21 @@ class User:
         # users = docs.to_dict()
         return users
 
+    def add_client_bill(self, new_bill):
+        print("add_client_bill in DB is activated...")
+        self.user_id = new_bill["user_id"]
+        # Create a reference to the parent document
+        parent_doc_ref = db.collection("users").document(self.user_id)
+
+        # Create a reference to the subcollection
+        subcollection_ref = parent_doc_ref.collection("bills")
+        print(subcollection_ref)
+        # Create a new document in the subcollection with some data
+        new_doc_ref = subcollection_ref.document()
+        new_doc_ref.set(new_bill, merge=True)
+
+        return new_doc_ref
+
     def get_user_data_by_email(self):
         # needs user_id only
         self.user_id = self.get_user_id_by_email()

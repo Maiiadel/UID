@@ -13,6 +13,11 @@ def getUnitCosts():
     return costs.get_unit_costs()
 
 
+def addClientBill(new_bill):
+    newBill = User()
+    return newBill.add_client_bill(new_bill=new_bill)
+
+
 def getUsers():
     user = User()
     return user.get_users_data()

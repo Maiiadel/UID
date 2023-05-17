@@ -4,6 +4,19 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
+interface Bill {
+  user_id: string;
+  id: string;
+  type: string;
+  month: string;
+  payment_method: string;
+  cost: Number;
+  usage: Number;
+  due_date: Number;
+  due_amount: Number;
+  status: string;
+}
+
 @Component({
   selector: 'app-client-bills',
   templateUrl: './client-bills.component.html',
@@ -12,6 +25,24 @@ import { FirebaseService } from 'src/app/shared/services/firebase.service';
 export class ClientBillsComponent {
   new_bill_group!: FormGroup;
   show: boolean = false;
+  bills_list: Bill[] = [];
+
+  new_bill_inserted: any = {};
+
+  months: any = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'Augest',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December',
+  };
 
   constructor(private db: FirebaseService) {
     this.new_bill_group = new FormGroup({
@@ -19,6 +50,13 @@ export class ClientBillsComponent {
       month_selected: new FormControl(),
       bill_amount: new FormControl(),
     });
+
+    // try {
+    //   this.bills_list = this.db.user['bills'];
+    // } catch (error) {
+    //   console.log(error);
+    //   this.bills_list = [];
+    // }
   }
 
   toggleFormShow() {
@@ -26,40 +64,65 @@ export class ClientBillsComponent {
   }
 
   calculateBill() {
-    console.log(
-      `this.bill_type_selected = ${this.new_bill_group.value.bill_type_selected}`
-    );
+    this.db.get_unit_costs().subscribe((unit_costs: any) => {
+      console.log(
+        `this.bill_type_selected = ${this.new_bill_group.value.bill_type_selected}`
+      );
 
-    let _bill_type_selected = this.new_bill_group.value.bill_type_selected;
-    let _month_selected = Number(this.new_bill_group.value.month_selected);
-    let _bill_amount = Number(this.new_bill_group.value.bill_amount);
+      let _bill_type_selected = this.new_bill_group.value.bill_type_selected;
+      let _month_selected = Number(this.new_bill_group.value.month_selected);
+      let _bill_amount = parseFloat(this.new_bill_group.value.bill_amount);
+      let _bill_type = _bill_type_selected;
 
-    if (_bill_type_selected === 'Electricity') {
-      _bill_type_selected = 'electricity_unit_costs';
-    } else if (_bill_type_selected === 'Water') {
-      _bill_type_selected = "'water_unit_costs";
-    }
-    console.log(`_bill_type_selected: ${_bill_type_selected}`);
+      if (_bill_type_selected === 'Electricity') {
+        _bill_type_selected = 'electricity_unit_costs';
+      } else if (_bill_type_selected === 'Water') {
+        _bill_type_selected = "'water_unit_costs";
+      }
 
-    let unit_cost = this.db.unit_cost[_bill_type_selected];
+      let unit_cost = unit_costs[_bill_type_selected];
 
-    let today = new Date();
-    let todayDateOfMonth = today.getDate();
+      let today = new Date();
+      console.log(`unit_cost['cost_per_unit'] = ${unit_cost['cost_per_unit']}`);
 
-    console.log(`unit_cost['cost_per_unit']: ${unit_cost['cost_per_unit']}`);
-    console.log(`_bill_amount: ${_bill_amount}`);
-    var bill_cost = _bill_amount * unit_cost['cost_per_unit'];
+      let todayDateOfMonth = today.getDate();
+      var _bill_cost: Number =
+        _bill_amount * Number(unit_cost['cost_per_unit']);
 
-    if (todayDateOfMonth > unit_cost['due_day']) {
-      bill_cost += unit_cost['due_amount'];
-      console.log(`bill_cost: ${bill_cost}`);
-    }
-    console.log(`bill_cost: ${bill_cost}`);
+      let due_amount_verified: boolean =
+        todayDateOfMonth > unit_cost['due_day'];
+      if (due_amount_verified) {
+        _bill_cost += unit_cost['due_amount'];
+      }
+      console.log(`_bill_cost: ${_bill_cost}`);
 
-    Swal.fire({
-      title: 'Bill Calculated and added to Bills ',
-      icon: 'success',
-    }).then();
-    this.show = false;
+      console.log(`this.db.user['user_id']: ${this.db.user['user_id']}`);
+
+      let new_bill: Bill = {
+        user_id: this.db.user['user_id'],
+        id: '',
+        type: _bill_type,
+        month: this.months[_month_selected],
+        payment_method: 'fawry',
+        cost: _bill_cost,
+        usage: _bill_amount + unit_cost['unit'],
+        due_date: unit_cost['due_day'],
+        due_amount: due_amount_verified ? unit_cost['due_amount'] : 0,
+        status: 'unpaid',
+      };
+      // this.db.add_client_bill(this.new_bill_inserted).subscribe((data: any) => {
+      //   console.log(data);
+      //   this.bills_list.push(this.new_bill_inserted);
+      //   Swal.fire({
+      //     title: 'Bill Calculated and added to Bills ',
+      //     icon: 'success',
+      //   }).then();
+      //   this.show = false;
+      // });
+
+      this.bills_list.push(new_bill);
+    });
   }
+
+  pay_bill(bill_id: string) {}
 }
