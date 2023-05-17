@@ -11,6 +11,9 @@ npm install --legacy-peer-deps
 cd frontend
 ng serve
 
+ng serve --disable-host-check
+
+
 */
 
 import { NgModule } from '@angular/core';
