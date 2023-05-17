@@ -1,4 +1,6 @@
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -17,15 +19,68 @@ interface Bill {
   status: string;
 }
 
+const ELEMENT_DATA: Bill[] = [
+  {
+    user_id: 'string',
+    id: '16552156',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '4684651',
+    type: 'Electricity',
+    month: 'April',
+    payment_method: 'fawry',
+    cost: 8451,
+    usage: 65152,
+    due_date: 15,
+    due_amount: 100,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '87415415',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+];
+
 @Component({
   selector: 'app-client-bills',
   templateUrl: './client-bills.component.html',
   styleUrls: ['./client-bills.component.scss'],
 })
 export class ClientBillsComponent {
+  displayedColumns: string[] = [
+    'Bill ID',
+    'Type',
+    'Month',
+    'Payment method',
+    'Cost',
+    'usage',
+    'Due date',
+    'Status',
+    'Due amount',
+    'Actions',
+  ];
+
   new_bill_group!: FormGroup;
   show: boolean = false;
   bills_list: Bill[] = [];
+  data = ELEMENT_DATA;
 
   new_bill_inserted: any = {};
 
@@ -45,6 +100,8 @@ export class ClientBillsComponent {
   };
 
   constructor(private db: FirebaseService) {
+    console.log(`dataSource= ${this.data}`);
+
     this.new_bill_group = new FormGroup({
       bill_type_selected: new FormControl(),
       month_selected: new FormControl(),

@@ -1,4 +1,4 @@
-import { Injectable, NgZone, Component } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { User } from '../../components/models/User';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -19,7 +19,6 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone, // NgZone service to remove outside scope warning
     private db: FirebaseService // private db: FirebaseService
   ) {
     /* Saving user data in localstorage when 

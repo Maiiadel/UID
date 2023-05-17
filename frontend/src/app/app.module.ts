@@ -11,12 +11,14 @@ ng serve
 
 */
 
-import { NgModule, ViewChild, ElementRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 // Firebase services + environment module
 import { AngularFireModule } from '@angular/fire/compat';
@@ -28,6 +30,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 
 // Components
+import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -70,16 +73,17 @@ import { FirebaseService } from './shared/services/firebase.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence(),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule.enablePersistence(),
   ],
   providers: [AuthService, FirebaseService],
   bootstrap: [AppComponent],
