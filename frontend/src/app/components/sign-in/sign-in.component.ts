@@ -15,7 +15,8 @@ export class SignInComponent implements OnInit {
   usersList: any = [];
   specificUser: any;
   userServ: any;
-
+  defaultEmail: string = `kirolosyassa2017@gmail.com`;
+  defaultPassword: string = `666666`;
   constructor(
     public authService: AuthService,
     private fb: FormBuilder,

@@ -13,7 +13,7 @@
           <input
             type="text"
             formControlName="email"
-            ngModel
+            [(ngModel)]="defaultEmail"
             class="form-control"
             placeholder="Enter your Email"
             #userName
@@ -33,7 +33,7 @@
           <input
             type="password"
             formControlName="password"
-            ngModel
+            [(ngModel)]="defaultPassword"
             class="form-control"
             placeholder="Enter your Password"
             #userPassword
@@ -78,4 +78,5 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>

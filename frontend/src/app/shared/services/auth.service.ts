@@ -58,6 +58,9 @@ export class AuthService {
               console.log(`user type  = ${user_type}`);
 
               this.db.setUser(user[uid]);
+              this.db.get_unit_costs().subscribe((costs: any) => {
+                this.db.unit_cost = costs;
+              });
 
               if (user_type === 'client') {
                 //bnshof ba2a 3ala 7asab el type bta3o ynavigate l anhi home page

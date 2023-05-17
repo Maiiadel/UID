@@ -9,8 +9,6 @@ import { Bill } from 'src/app/components/models/Bill';
 import { Bundle } from 'src/app/components/models/Bundle';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,9 +17,10 @@ export class FirebaseService {
   user: any;
   users: any;
   userType: any;
+  unit_cost: any;
 
   readonly Root = 'http://127.0.0.1:8000';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getItems(): Observable<Item[]> {
     this.items = this.http.get(this.Root + '/items');
@@ -37,6 +36,7 @@ export class FirebaseService {
     // this.user = this.user[uid];
     console.log(this.user);
     console.log(`this.user[uid] = ${this.user[uid]}`);
+
     return this.user;
   }
 
@@ -53,6 +53,14 @@ export class FirebaseService {
       Total_subs: user.Total_subs,
       Total_water_bills: user.Total_water_bills,
     };
+  }
+
+  get_unit_costs(): any {
+    let url = this.Root + `/unit_costs`;
+    console.log(url);
+    let costs = this.http.get(url);
+    this.unit_cost = { costs };
+    return costs;
   }
 
   fetchUsers(): Observable<any> {

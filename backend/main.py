@@ -70,6 +70,15 @@ async def get_user(uid: str):
     return data
 
 
+# Get unit costs of electricity and water costs
+@app.get("/unit_costs")
+async def get_unit_costs():
+    print("get_unit_costs is activated!")
+    data = getUnitCosts()
+    print(data)
+    return data
+
+
 # Get from MyProfile Page to display all projects of a single user
 @app.get("/users")
 async def get_users():

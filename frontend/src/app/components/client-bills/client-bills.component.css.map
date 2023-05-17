@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"client-bills.component.css"}
+{"version":3,"sources":["client-bills.component.scss","client-bills.component.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;EACA,wEAAA;ACCF;;ADCA;EACE,aAAA;EACA,uBAAA;ACEF","file":"client-bills.component.css"}

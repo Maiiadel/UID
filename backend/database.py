@@ -1,18 +1,16 @@
-from databaseStructure import *
 from databaseClasses.Project import Project
 from databaseClasses.User import User
-from databaseClasses.Item import Item
-
-
-def getItems():
-    project = Item()
-    data = project.get_items()
-    return data
+from databaseClasses.UnitCost import UnitCost
 
 
 def getUser(uid):
     user = User(user_id=uid)
     return user.get_user_data_by_id()
+
+
+def getUnitCosts():
+    costs = UnitCost()
+    return costs.get_unit_costs()
 
 
 def getUsers():

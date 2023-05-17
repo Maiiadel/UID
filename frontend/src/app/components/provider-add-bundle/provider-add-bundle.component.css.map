@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"provider-add-bundle.component.css"}
+{"version":3,"sources":["provider-add-bundle.component.scss","provider-add-bundle.component.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;EACA,wEAAA;ACCJ;;ADEA;EACI,aAAA;EACA,uBAAA;ACCJ","file":"provider-add-bundle.component.css"}

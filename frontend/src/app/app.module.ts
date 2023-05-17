@@ -1,15 +1,17 @@
 /*
 
-npm install --force @ng-bootstrap/ng-bootstrap
+npm install @ng-bootstrap/ng-bootstrap@latest
+npm install @angular-devkit/build-angular@latest
 ng update @angular/core
-npm i
+npm i --force
+npm install --legacy-peer-deps
 
 cd frontend
 ng serve
 
 */
 
-import { NgModule } from '@angular/core';
+import { NgModule, ViewChild, ElementRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';

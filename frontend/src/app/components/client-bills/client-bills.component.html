@@ -7,20 +7,23 @@
     class="btn btn-primary align-center h-50 w-25"
     value="{}"
     href=""
-    (click)="showForm()"
+    (click)="toggleFormShow()"
   >
     Add Monthly Bill
   </button>
 </div>
 <br />
 <div class="center">
-  <form *ngIf="show" class="card w-50 h-50 form-group">
+  <form
+    [formGroup]="new_bill_group"
+    *ngIf="show"
+    class="card w-50 h-50 form-group"
+    (ngSubmit)="calculateBill()"
+  >
     <label class="mx-3">Bill Type :</label>
     <br />
     <select
-      #userType
-      formControlName="type"
-      ngModel
+      formControlName="bill_type_selected"
       class="form-control mx-3"
       name="TypeOfBill"
       id="type"
@@ -31,33 +34,31 @@
     </select>
     <label class="mx-3">Month :</label>
     <select
-      #userType
-      formControlName="type"
-      ngModel
+      formControlName="month_selected"
       class="form-control mx-3"
       name="MonthOfBill"
       id="month"
       placeholder="choose Month"
     >
-      <option value="Jan">Jan</option>
-      <option value="Feb">Feb</option>
-      <option value="March">March</option>
-      <option value="April">April</option>
-      <option value="May">May</option>
-      <option value="June">June</option>
-      <option value="July">July</option>
-      <option value="Aug">August</option>
-      <option value="Sep">September</option>
-      <option value="Oct">October</option>
-      <option value="Nov">November</option>
-      <option value="Dec">December</option>
+      <option value="1">Jan</option>
+      <option value="2">Feb</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
     </select>
     <label class="mx-3" for="billAmount">Enter Unit cost :</label>
     <input
+      formControlName="bill_amount"
       type="text"
       class="form-control mx-3"
       id="billUnitCost"
-      [(ngModel)]="billAmount"
     />
     <button
       (click)="calculateBill()"

@@ -1,4 +1,4 @@
-from database import *
+from databaseStructure import *
 
 
 class User:

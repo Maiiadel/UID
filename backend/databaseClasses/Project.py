@@ -1,5 +1,4 @@
-from databaseClasses.User import User
-from database import *
+from databaseStructure import *
 
 
 class Project:

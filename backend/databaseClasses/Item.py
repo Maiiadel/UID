@@ -17,7 +17,3 @@ class Item:
         # items = item.to_
         # print(f"Items = {items}")
         return all_items
-
-
-item = Item("dsfajksdfm", "namemm", "titelm")
-print(item.get_items())
