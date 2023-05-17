@@ -1,9 +1,11 @@
 /*
 
+npm i -g @angular/cli
+npm i --force
+npm i
 npm install @ng-bootstrap/ng-bootstrap@latest
 npm install @angular-devkit/build-angular@latest
 ng update @angular/core
-npm i --force
 npm install --legacy-peer-deps
 
 cd frontend
