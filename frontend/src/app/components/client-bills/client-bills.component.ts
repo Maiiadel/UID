@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -12,6 +13,150 @@ import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import { Bill } from '../models/Bill';
 
 const ELEMENT_DATA: Bill[] = [
+  {
+    user_id: 'string',
+    id: '16552156',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '4684651',
+    type: 'Electricity',
+    month: 'April',
+    payment_method: 'fawry',
+    cost: 8451,
+    usage: 65152,
+    due_date: 15,
+    due_amount: 100,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '87415415',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '16552156',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '4684651',
+    type: 'Electricity',
+    month: 'April',
+    payment_method: 'fawry',
+    cost: 8451,
+    usage: 65152,
+    due_date: 15,
+    due_amount: 100,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '87415415',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '16552156',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '4684651',
+    type: 'Electricity',
+    month: 'April',
+    payment_method: 'fawry',
+    cost: 8451,
+    usage: 65152,
+    due_date: 15,
+    due_amount: 100,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '87415415',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '16552156',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '4684651',
+    type: 'Electricity',
+    month: 'April',
+    payment_method: 'fawry',
+    cost: 8451,
+    usage: 65152,
+    due_date: 15,
+    due_amount: 100,
+    status: 'unpaid',
+  },
+  {
+    user_id: 'string',
+    id: '87415415',
+    type: 'Water',
+    month: 'May',
+    payment_method: 'fawry',
+    cost: 5411,
+    usage: 45121,
+    due_date: 15,
+    due_amount: 0,
+    status: 'unpaid',
+  },
   {
     user_id: 'string',
     id: '16552156',
@@ -103,6 +248,9 @@ export class ClientBillsComponent implements OnInit {
     console.log(`ELEMENT_DATA = ${ELEMENT_DATA}`);
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   constructor(private db: FirebaseService) {
     // console.log(`dataSource= ${this.data}`);
 
