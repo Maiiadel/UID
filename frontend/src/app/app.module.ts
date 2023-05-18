@@ -2,6 +2,8 @@
 
 npm i -g @angular/cli
 npm i --force
+
+
 npm i
 npm install @ng-bootstrap/ng-bootstrap@latest --force
 npm install @angular-devkit/build-angular@latest --force
@@ -22,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -84,6 +88,8 @@ import { FirebaseService } from './shared/services/firebase.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

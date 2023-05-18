@@ -63,18 +63,14 @@ export class FirebaseService {
     return costs;
   }
 
-  add_client_bill(new_bill: any): any {
+  add_client_bill(new_bill: Bill): any {
     let url = this.Root + `/add_client_bill`;
     console.log(`new_bill: ${new_bill}`);
-
-    const params = new HttpParams()
-      .set('uid', this.user.user_id)
-      .set('new_bill', new_bill);
 
     let uid = this.user.user_id;
     let data = { uid, new_bill };
     console.log(url);
-    let response = this.http.post(url, new_bill);
+    let response = this.http.post<Bill>(url, new_bill);
     return response;
   }
 

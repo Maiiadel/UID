@@ -3,23 +3,13 @@ import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
-
-export interface Bill {
-  user_id: string;
-  id: string;
-  type: string;
-  month: string;
-  payment_method: string;
-  cost: Number;
-  usage: Number;
-  due_date: Number;
-  due_amount: Number;
-  status: string;
-}
+import { Bill } from '../models/Bill';
 
 const ELEMENT_DATA: Bill[] = [
   {
@@ -134,6 +124,13 @@ export class ClientBillsComponent implements OnInit {
     this.show = !this.show;
   }
 
+  search(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   sortData(event: Sort) {
     const data = this.bills_list.slice();
     if (!event.active || event.direction === '') {
@@ -216,21 +213,27 @@ export class ClientBillsComponent implements OnInit {
         due_amount: due_amount_verified ? unit_cost['due_amount'] : 0,
         status: 'unpaid',
       };
-      // this.db.add_client_bill(this.new_bill_inserted).subscribe((data: any) => {
-      //   console.log(data);
-      //   this.bills_list.push(this.new_bill_inserted);
-      //   Swal.fire({
-      //     title: 'Bill Calculated and added to Bills ',
-      //     icon: 'success',
-      //   }).then();
-      //   this.show = false;
-      // });
+      this.db.add_client_bill(this.new_bill_inserted).subscribe((data: any) => {
+        console.log(data);
+        this.bills_list.push(this.new_bill_inserted);
+        Swal.fire({
+          title: 'Bill Calculated and added to Bills ',
+          icon: 'success',
+        }).then();
+        this.show = false;
+      });
 
       this.bills_list.push(new_bill);
     });
   }
 
-  pay_bill(bill_id: string) {}
+  pay_bill(bill_id: string) {
+    for (const bill of this.bills_list) {
+      if (bill.id === bill_id) {
+        bill.status = 'paid';
+      }
+    }
+  }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

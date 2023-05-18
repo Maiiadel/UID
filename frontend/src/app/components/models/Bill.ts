@@ -1,11 +1,12 @@
 export interface Bill {
-  bundle_id?: string;
-  user_id?: string;
-  month?: string;
-  status?: string;
-  production_date?: Date;
-  Total_amount?: number;
-  usage?: number;
-  payment_method?: string;
-  bill_type?: string;
+  user_id: string;
+  id: string;
+  type: string;
+  month: string;
+  payment_method: string;
+  cost: Number;
+  usage: Number;
+  due_date: Number;
+  due_amount: Number;
+  status: string;
 }

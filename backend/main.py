@@ -40,14 +40,15 @@ class User(BaseModel):
 
 class Bill(BaseModel):
     user_id: str
-    bill_id: str
-    bill_type: str
-    bill_month: str
-    bill_payment_method: str
-    bill_usage: int
-    bill_due_date: int
-    bill_due_amount: float
-    bill_status: str
+    id: str
+    type: str
+    month: str
+    payment_method: str
+    cost: int
+    usage: int
+    due_date: int
+    due_amount: float
+    status: str
 
 
 # Get from MyProfile Page to display all projects of a single user

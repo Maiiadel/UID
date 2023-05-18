@@ -67,8 +67,46 @@
   </form>
 </div>
 
+<div class="search-container">
+  <span>
+    <mat-label>Filteration</mat-label>
+    <br />
+    <mat-form-field>
+      <input
+        matInput
+        #searchInput
+        (keyup)="search(searchInput.value)"
+        placeholder="Search"
+      />
+    </mat-form-field>
+  </span>
+</div>
+<!-- <mat-form-field>
+  <mat-label>Filter by name</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event.target.value)"
+    placeholder="Name"
+  />
+</mat-form-field> -->
+
+<!-- <mat-form-field>
+  <mat-label>Filter by type</mat-label>
+  <input
+    matInput
+    #filterByType
+    (keyup)="applyFilter(filterByType.value)"
+    placeholder="Type"
+  />
+</mat-form-field> -->
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort matSort (matSortChange)="sortData($event)">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSort
+    (matSortChange)="sortData($event)"
+  >
     <!-- 1 id -->
     <ng-container matColumnDef="Bill ID">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill ID</th>
@@ -95,7 +133,9 @@
     <!-- 5 cost -->
     <ng-container matColumnDef="Cost">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
-      <td mat-cell *matCellDef="let element">{{ element.cost }} L.E</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.cost | currency }}
+      </td>
     </ng-container>
 
     <!-- 6 usage -->
@@ -119,7 +159,15 @@
     <!-- 9 Status -->
     <ng-container matColumnDef="Status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngStyle]="{
+          'background-color': element.status === 'unpaid' ? 'red' : 'green'
+        }"
+      >
+        {{ element.status }}
+      </td>
     </ng-container>
 
     <!-- 10 Actions -->
@@ -131,7 +179,7 @@
         *matCellDef="let element"
         (click)="pay_bill(element.id)"
       >
-        Pay
+        <span *ngIf="element.status != 'paid'"> Pay </span>
       </button>
     </ng-container>
 
@@ -144,124 +192,6 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
-
-<!-- <div class="container">
-  <table
-    id="example"
-    class="table table-light table-striped"
-    style="width: 100%"
-  >
-    <thead>
-      <tr>
-        <th>Bill ID</th>
-        <th>Type</th>
-        <th>Month</th>
-        <th>Payment method</th>
-        <th>Cost</th>
-        <th>usage</th>
-        <th>Due date</th>
-        <th>Status</th>
-        <th>Due_amount</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bill of bills_list">
-        <td>{{ bill.id }}</td>
-        <td>{{ bill.type }}</td>
-        <td>{{ bill.month }}</td>
-        <td>{{ bill.payment_method }}</td>
-        <td>{{ bill.cost }}</td>
-        <td>{{ bill.usage }}</td>
-        <td>{{ bill.due_date }}</td>
-        <td>{{ bill.due_amount }}</td>
-        <td>{{ bill.status }}</td>
-
-        <td>
-          <button
-            class="btn btn-success align-center"
-            (click)="pay_bill(bill.id)"
-          >
-            Pay
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-<!-- 
-<table mat-table (datasource)="(data)">
-  <ng-container matColumnDef="Bill ID">
-    <th mat-header-cell *matHeaderCellDef>Bill ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-  </ng-container>
-  <ng-container matColumnDef="Type">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
-    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
-  </ng-container>
-  <ng-container matColumnDef="Month">
-    <th mat-header-cell *matHeaderCellDef>Month</th>
-    <td mat-cell *matCellDef="let element">{{ element.month }}</td>
-  </ng-container>
-  <ng-container matColumnDef="Payment method">
-    <th mat-header-cell *matHeaderCellDef>Payment method</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      [style.color]="element.payment_method"
-    >
-      {{ element.payment_method }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="Cost">
-    <th mat-header-cell *matHeaderCellDef>Cost</th>
-    <td mat-cell *matCellDef="let element" [style.cost]="element.cost">
-      {{ element.cost }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="usage">
-    <th mat-header-cell *matHeaderCellDef>usage</th>
-    <td mat-cell *matCellDef="let element" [style.usage]="element.usage">
-      {{ element.usage }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="Due date">
-    <th mat-header-cell *matHeaderCellDef>Due date</th>
-    <td mat-cell *matCellDef="let element" [style.due_date]="element.due_date">
-      {{ element.due_date }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="Due amount">
-    <th mat-header-cell *matHeaderCellDef>Due amount</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      [style.due_amount]="element.due_amount"
-    >
-      {{ element.due_amount }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="Status">
-    <th mat-header-cell *matHeaderCellDef>Status</th>
-    <td mat-cell *matCellDef="let element" [style.status]="element.status">
-      {{ element.status }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="Actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <button
-      class="btn btn-success align-center"
-      mat-cell
-      *matCellDef="let element"
-      (click)="pay_bill(element.id)"
-    >
-      Pay
-    </button>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table> -->
 
 <br />
 
