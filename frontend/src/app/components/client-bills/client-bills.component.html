@@ -66,6 +66,85 @@
     </button>
   </form>
 </div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort matSort (matSortChange)="sortData($event)">
+    <!-- 1 id -->
+    <ng-container matColumnDef="Bill ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <!-- 2 type -->
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
+
+    <!-- 3 month -->
+    <ng-container matColumnDef="Month">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
+      <td mat-cell *matCellDef="let element">{{ element.month }}</td>
+    </ng-container>
+
+    <!-- 4 payment method -->
+    <ng-container matColumnDef="Payment method">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment method</th>
+      <td mat-cell *matCellDef="let element">{{ element.payment_method }}</td>
+    </ng-container>
+
+    <!-- 5 cost -->
+    <ng-container matColumnDef="Cost">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+      <td mat-cell *matCellDef="let element">{{ element.cost }} L.E</td>
+    </ng-container>
+
+    <!-- 6 usage -->
+    <ng-container matColumnDef="usage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>usage</th>
+      <td mat-cell *matCellDef="let element">{{ element.usage }}</td>
+    </ng-container>
+
+    <!-- 7 due date -->
+    <ng-container matColumnDef="Due date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Due date</th>
+      <td mat-cell *matCellDef="let element">{{ element.due_date }}</td>
+    </ng-container>
+
+    <!-- 8 Due amount -->
+    <ng-container matColumnDef="Due amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Due amount</th>
+      <td mat-cell *matCellDef="let element">{{ element.due_amount }}</td>
+    </ng-container>
+
+    <!-- 9 Status -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <!-- 10 Actions -->
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+
+      <button
+        class="btn btn-success align-center"
+        *matCellDef="let element"
+        (click)="pay_bill(element.id)"
+      >
+        Pay
+      </button>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
+
 <!-- <div class="container">
   <table
     id="example"
@@ -110,7 +189,7 @@
     </tbody>
   </table>
 </div> -->
-
+<!-- 
 <table mat-table (datasource)="(data)">
   <ng-container matColumnDef="Bill ID">
     <th mat-header-cell *matHeaderCellDef>Bill ID</th>
@@ -182,7 +261,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+</table> -->
 
 <br />
 

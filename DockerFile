@@ -1,0 +1,47 @@
+# Base image for the backend
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9 AS backend
+
+# Set the working directory for the backend
+WORKDIR /app/backend
+
+# Copy the backend code
+COPY backend .
+
+# Install the backend dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Build the backend
+# RUN python setup.py install
+
+# Base image for the frontend
+FROM node:14.17.0-alpine3.13 AS frontend
+
+# Set the working directory for the frontend
+WORKDIR /app/frontend
+
+# Copy the frontend code
+COPY frontend .
+
+# Install the frontend dependencies
+RUN npm install --quiet
+
+# Build the frontend
+RUN npm run build --prod
+
+# Base image for the final image
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9 AS final
+
+# Set the working directory for the final image
+WORKDIR /app
+
+# Copy the backend code from the backend image
+COPY --from=backend /app/backend .
+
+# Copy the frontend code from the frontend image
+COPY --from=frontend /app/frontend/dist/frontend /app/frontend
+
+# Expose the port that the app will run on
+EXPOSE 80
+
+# Start the app
+CMD ["python", "main.py"]

@@ -1,12 +1,14 @@
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
 
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, ViewChild, ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
-interface Bill {
+export interface Bill {
   user_id: string;
   id: string;
   type: string;
@@ -63,24 +65,11 @@ const ELEMENT_DATA: Bill[] = [
   templateUrl: './client-bills.component.html',
   styleUrls: ['./client-bills.component.scss'],
 })
-export class ClientBillsComponent {
-  displayedColumns: string[] = [
-    'Bill ID',
-    'Type',
-    'Month',
-    'Payment method',
-    'Cost',
-    'usage',
-    'Due date',
-    'Status',
-    'Due amount',
-    'Actions',
-  ];
-
+export class ClientBillsComponent implements OnInit {
   new_bill_group!: FormGroup;
   show: boolean = false;
-  bills_list: Bill[] = [];
-  data = ELEMENT_DATA;
+  bills_list: Bill[] = ELEMENT_DATA;
+  // data = ELEMENT_DATA;
 
   new_bill_inserted: any = {};
 
@@ -99,8 +88,33 @@ export class ClientBillsComponent {
     12: 'December',
   };
 
+  displayedColumns: string[] = [
+    'Bill ID',
+    'Type',
+    'Month',
+    'Payment method',
+    'Cost',
+    'usage',
+    'Due date',
+    'Due amount',
+    'Status',
+    'Actions',
+  ];
+  dataSource = new MatTableDataSource<Bill>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource = new MatTableDataSource<Bill>(this.bills_list);
+    console.log(this.bills_list);
+    console.log(`ELEMENT_DATA = ${ELEMENT_DATA}`);
+  }
+
   constructor(private db: FirebaseService) {
-    console.log(`dataSource= ${this.data}`);
+    // console.log(`dataSource= ${this.data}`);
 
     this.new_bill_group = new FormGroup({
       bill_type_selected: new FormControl(),
@@ -118,6 +132,41 @@ export class ClientBillsComponent {
 
   toggleFormShow() {
     this.show = !this.show;
+  }
+
+  sortData(event: Sort) {
+    const data = this.bills_list.slice();
+    if (!event.active || event.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = event.direction === 'asc';
+      switch (event.active) {
+        case 'id':
+          return compare(a.id, b.id, isAsc);
+        case 'Type':
+          return compare(a.type, b.type, isAsc);
+        case 'Month':
+          return compare(a.month, b.month, isAsc);
+        case 'Payment method':
+          return compare(a.payment_method, b.payment_method, isAsc);
+        case 'Cost':
+          return compare(Number(a.cost), Number(b.cost), isAsc);
+        case 'usage':
+          return compare(Number(a.usage), Number(b.usage), isAsc);
+        case 'Due date':
+          return compare(Number(a.due_date), Number(b.due_date), isAsc);
+        case 'Due amount':
+          return compare(Number(a.due_amount), Number(b.due_amount), isAsc);
+        case 'Status':
+          return compare(a.status, b.status, isAsc);
+
+        default:
+          return 0;
+      }
+    });
   }
 
   calculateBill() {
@@ -182,4 +231,8 @@ export class ClientBillsComponent {
   }
 
   pay_bill(bill_id: string) {}
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
